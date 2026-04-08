@@ -1,0 +1,15 @@
+[lessweb]
+port = 8080
+enable_global_error_handling = false
+
+[lessweb.logger]
+format = '%(asctime)s %(name)s %(filename)s:%(lineno)d %(levelname)s - %(message)s'
+level = 'INFO'
+stream = 'file'
+name = 'my-saas-skeleton'
+file = 'logs/my-saas-skeleton.log'
+
+[lessweb.logger.rotating]
+when = 'd'
+interval = 1
+backup_count = 3

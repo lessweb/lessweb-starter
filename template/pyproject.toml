@@ -1,0 +1,60 @@
+[project]
+name = "my-saas-skeleton"
+version = "0.1.0"
+description = "My SaaS application skeleton built with lessweb framework"
+readme = "README.md"
+requires-python = ">=3.11"
+
+# 开发依赖（测试、linting 等）
+[project.optional-dependencies]
+dev = [
+    "flake8",
+    "mypy",
+    "coverage",
+    "pytest",
+    "pytest-cov",
+    "pytest-mock",
+    "pytest-asyncio",
+    "pytest-aiohttp",
+    "types-toml",
+    "types-PyMySQL",
+]
+
+[tool.mypy]
+implicit_optional = true
+check_untyped_defs = true
+
+[[tool.mypy.overrides]]
+module = [
+    "aiomysql.*",
+    "bullmq.*",
+]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+asyncio_mode = "auto"
+addopts = "--cov=src --cov-report=term-missing --cov-report=html"
+
+[tool.coverage.run]
+source = ["src"]
+omit = [
+    "*/tests/*",
+    "*/venv/*",
+    "*/.venv/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+]

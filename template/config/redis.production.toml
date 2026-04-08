@@ -1,0 +1,5 @@
+[redis]
+host = 'production-redis-host'
+port = 6379
+password = 'your-redis-password-here'
+db = 0
